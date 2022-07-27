@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speech BirthDay</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/37fbe7bbce.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="popUp">
+      <div class="bg-black-low"></div>
+      <div class="pu-content">
+        <p class="pu-message"></p>
+        <button class="closePu"></button>
+      </div>
+    </div>
+
+    <header>
+      <i class="darkMode nMorphism fas fa-moon"></i>
+      <button class="nMorphism langChange">En</button>
+    </header>
+
+    <main>
+      <p class="title">روی دکمه "شروع" کلیک کن</p>
+      <p class="helpText">1378/فروردین/01</p>
+
+      <div class="timer">
+        <p class="nMorphism time year">00</p>
+        <p class="nMorphism time month">00</p>
+        <p class="nMorphism time day">00</p>
+      </div>
+
+      <div class="timer">
+        <p class="desc">روز</p>
+        <p class="desc">ماه</p>
+        <p class="desc">سال</p>
+      </div>
+
+      <div class="nMorphism remainToBirthday"></div>
+
+      <button class="btnConfirm nMorphism">شروع</button>
+    </main>
+
+    <footer>
+      <p>
+        Created By
+        <a href="https://mohammadzolghadr.ir" target="_blank">Mohammad Zolghadr</a>
+      </p>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

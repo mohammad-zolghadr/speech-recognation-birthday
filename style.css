@@ -1,0 +1,232 @@
+@font-face {
+  font-family: 'nf';
+  src: url('./fonts/IRANSansMobile.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'bf';
+  src: url('./fonts/IRANSansMobile_Bold.ttf') format('truetype');
+}
+:root {
+  --primary-color: #be1e2d;
+  --secondary-color: #f7941d;
+  --bg-color: #eee;
+  --dark-color: #323232;
+  --light-color: #f8f8f8;
+  --pale-text: #9a9a9a;
+  --danger-color: #be1e2d;
+
+  --shdadow-dark: rgba(0, 0, 0, 0.3);
+  --shadow-light: rgba(255, 255, 255, 1);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  direction: rtl;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.dark-theme-variables {
+  --primary-color: #ee6e6e;
+  --secondary-color: #f7941d;
+  --bg-color: #323232;
+  --dark-color: #eeeeee;
+  --light-color: #121212;
+  --pale-text: #e1e1e1;
+  --shdadow-dark: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(100, 100, 100, 0.15);
+}
+
+html {
+  font-family: nf;
+}
+
+body {
+  background-color: var(--bg-color);
+  direction: rtl;
+}
+
+header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
+.langChange,
+.darkMode {
+  color: var(--dark-color);
+  opacity: 0.8;
+  font-weight: bold;
+  background-color: var(--bg-color);
+  margin: 5px;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.langChange {
+  padding: 10px;
+}
+
+.langChange:hover,
+.darkMode:hover,
+.btnConfirm:hover {
+  box-shadow: 5px 5px 10px var(--shdadow-dark), -5px -5px 10px var(--shdadow-light);
+}
+
+.darkMode {
+  color: var(--secondary-color);
+}
+
+.nMorphism {
+  box-shadow: 5px 5px 10px var(--shdadow-dark), -5px -5px 10px var(--shadow-light);
+  border-radius: 10px;
+}
+
+main {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  color: var(--pale-text);
+  margin: 20px;
+  font-family: bf;
+}
+
+.helpText {
+  color: var(--pale-text);
+  opacity: 0;
+  margin-bottom: 10px;
+  transition: 0.5s;
+  text-align: center;
+}
+
+.desc {
+  margin: 10px 15px;
+  font-size: 0.8rem;
+  color: var(--pale-text);
+}
+
+.time {
+  padding: 10px 10px 5px 10px;
+  margin: 7px;
+  font-weight: bold;
+  color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.remainToBirthday {
+  color: var(--dark-color);
+  margin: 20px;
+  padding: 10px 50px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.remainDay {
+  color: var(--secondary-color);
+}
+
+.btnConfirm {
+  font-family: bf;
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+  border-radius: 50px;
+  padding: 10px 80px;
+  margin-top: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+footer p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 15px;
+  color: var(--pale-text);
+}
+
+footer a {
+  color: var(--pale-text);
+}
+
+.popUp,
+.bg-black-low {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+}
+.popUp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  top: -100%;
+}
+
+.bg-black-low {
+  background-color: black;
+  opacity: 0.9;
+}
+
+.pu-content {
+  max-width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 11;
+  top: 20px;
+  background-color: var(--bg-color);
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.popUp p {
+  color: var(--dark-color);
+  font-size: 0.9rem;
+}
+
+.pu-content button {
+  background-color: var(--primary-color);
+  font-family: bf;
+  color: var(--light-color);
+  padding: 5px 50px;
+  padding-top: 10px;
+  border-radius: 20px;
+  margin-top: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.pu-content button:hover {
+  opacity: 0.5;
+}
