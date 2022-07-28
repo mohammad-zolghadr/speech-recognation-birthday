@@ -24,7 +24,6 @@
   margin: 0;
   border: none;
   outline: none;
-  direction: rtl;
   box-sizing: border-box;
   text-decoration: none;
 }
@@ -42,6 +41,7 @@
 
 html {
   font-family: nf;
+  direction: rtl;
 }
 
 body {
@@ -90,7 +90,7 @@ header {
 }
 
 main {
-  max-width: 60%;
+  max-width: 75%;
   margin: auto;
   margin-top: 40px;
   display: flex;
@@ -130,7 +130,8 @@ main {
 
 .time {
   flex: 1 1 50px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,6 +140,7 @@ main {
   font-weight: bold;
   color: var(--primary-color);
   border-radius: 5px;
+  transition: 0.3s;
 }
 
 .remainToBirthday {

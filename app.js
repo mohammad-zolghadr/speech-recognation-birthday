@@ -91,8 +91,7 @@ recognition.addEventListener('result', (e) => {
     .map((result) => result[0])
     .map((result) => result.transcript)
     .join(' ');
-  if (langFa) farsiVersion(text);
-  else englishVersion(text);
+  startDetection(text);
 });
 
 recognition.addEventListener('end', () => {
@@ -100,29 +99,42 @@ recognition.addEventListener('end', () => {
 });
 
 btnStart.addEventListener('click', () => {
-  btnStart.style.opacity = 0;
+  btnStart.style.display = 'none';
   speaking = true;
   reset();
   recognition.start();
 });
 
-function farsiVersion(text) {
-  // Convert Numbers To EnglishNumber
-  let e = '۰'.charCodeAt(0);
-  text = text.replace(/[۰-۹]/g, function (t) {
-    return t.charCodeAt(0) - e;
-  });
-
-  let tArray = text.split(' ');
-
-  faMonth.forEach((e) => {
-    tArray.forEach((t) => {
-      if (e == t) {
-        resultArray['month'] = e;
-        pMonth.textContent = e;
-      }
+function startDetection(text) {
+  let tArray;
+  if (langFa) {
+    // Convert Numbers To EnglishNumber
+    let e = '۰'.charCodeAt(0);
+    text = text.replace(/[۰-۹]/g, function (t) {
+      return t.charCodeAt(0) - e;
     });
-  });
+    tArray = text.split(' ');
+
+    faMonth.forEach((e) => {
+      tArray.forEach((t) => {
+        if (e == t) {
+          resultArray['month'] = e;
+          pMonth.textContent = e;
+        }
+      });
+    });
+  } else {
+    tArray = text.split(' ');
+
+    enMonth.forEach((e) => {
+      tArray.forEach((t) => {
+        if (e == t) {
+          resultArray['month'] = e;
+          pMonth.textContent = e;
+        }
+      });
+    });
+  }
 
   tArray.forEach((e) => {
     e = parseInt(e);
@@ -141,70 +153,59 @@ function farsiVersion(text) {
   });
 
   if (!resultArray['day']) {
-    helpText.textContent = 'تکمیل نشده : روز';
-    if (!resultArray['month']) helpText.textContent += ' ماه';
-    if (!resultArray['year']) helpText.textContent += ' سال';
+    langFa
+      ? (helpText.textContent = 'تکمیل نشده : روز')
+      : (helpText.textContent = 'Missing : Day');
+    if (!resultArray['month'])
+      langFa ? (helpText.textContent += ' ماه') : (helpText.textContent += ' Month');
+    if (!resultArray['year'])
+      langFa ? (helpText.textContent += ' سال') : (helpText.textContent += ' Year');
   } else {
-    helpText.textContent = 'تکمیل نشده : ';
-    if (!resultArray['month']) helpText.textContent += ' ماه';
-    if (!resultArray['year']) helpText.textContent += ' سال';
+    langFa
+      ? (helpText.textContent = 'تکمیل نشده : ')
+      : (helpText.textContent = 'Missing : ');
+    if (!resultArray['month'])
+      langFa ? (helpText.textContent += ' ماه') : (helpText.textContent += ' Month');
+    if (!resultArray['year'])
+      langFa ? (helpText.textContent += ' سال') : (helpText.textContent += ' Year');
   }
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-    pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' وگرنه دوباره بگو";
+    langFa
+      ? (pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' وگرنه دوباره بگو")
+      : (pTitle.textContent =
+          "If this information is correct say 'OK' otherwise say it again");
     helpText.style.color = 'var(--secondary-color)';
     helpText.textContent = `${resultArray['day']}/${resultArray['month']}/${resultArray['year']}`;
   }
 
-  if (text.includes('ok') || text.includes('okay') || text.includes('اوکی')) {
-    // End Speak
-    console.log(resultArray['year'], resultArray['month'], resultArray['day']);
-    if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-      speaking = false;
-      recognition.stop();
-      speakeControl = false;
-      calculateAge(resultArray['year'], resultArray['month'], resultArray['day']);
-      helpText.style.opacity = 0;
-      pTitle.textContent = 'سن شما';
-      calculateRemain(resultArray['month'], resultArray['day']);
-      btnStart.style.opacity = 1;
-    } else pTitle.textContent = 'لطفا همه اطلاعات را بگو...';
-  }
-}
-
-function englishVersion(text) {
-  if (text.includes('year')) resultArray['year'] = text.split(' ')[0];
-  if (text.includes('month')) resultArray['month'] = text.split(' ')[0];
-  if (text.includes('day')) resultArray['day'] = text.split(' ')[0];
-
-  if (!resultArray['day']) {
-    helpText.textContent = 'Missing : Day';
-    if (!resultArray['month']) helpText.textContent += ' Month';
-    if (!resultArray['year']) helpText.textContent += ' Year';
-  } else {
-    helpText.textContent = 'Missing : ';
-    if (!resultArray['month']) helpText.textContent += ' Month';
-    if (!resultArray['year']) helpText.textContent += ' Year';
-  }
-
-  if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-    pTitle.textContent = "If this information is correct say 'OK' otherwise say it again";
-    helpText.style.color = '#676767';
-    helpText.textContent = `${resultArray['year']}/${resultArray['month']}/${resultArray['day']}`;
-  }
-
-  if (text.includes('ok') || text.includes('okay') || text.includes('yes')) {
-    // End Speak
-    if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-      speaking = false;
-      recognition.stop();
-      speakeControl = false;
-      calculateAge(resultArray['year'], resultArray['month'], resultArray['day']);
-      helpText.style.opacity = 0;
-      pTitle.textContent = 'Your Age';
-      calculateRemain(resultArray['month'], resultArray['day']);
-      btnStart.style.opacity = 1;
-    } else pTitle.textContent = 'Please Say Full Information';
+  if (
+    text.includes('ok') ||
+    text.includes('okay') ||
+    text.includes('اوکی') ||
+    text.includes('yes')
+  ) {
+    if (resultArray['day'] > 31) {
+      langFa
+        ? popUp('روز تولد اشتباهه، یه بار دیگه روز رو بگو')
+        : popUp('Day of birthday is invalid \n say it again');
+    } else {
+      // End Speak
+      if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
+        console.log(resultArray['year'], resultArray['month'], resultArray['day']);
+        speaking = false;
+        recognition.stop();
+        speakeControl = false;
+        calculateAge(resultArray['year'], resultArray['month'], resultArray['day']);
+        helpText.style.opacity = 0;
+        langFa ? (pTitle.textContent = 'سن شما') : (pTitle.textContent = 'Your Age');
+        calculateRemain(resultArray['month'], resultArray['day']);
+        btnStart.style.display = 'block';
+      } else
+        langFa
+          ? (pTitle.textContent = 'لطفا همه اطلاعات را بگو...')
+          : (pTitle.textContent = 'Please Say Full Information');
+    }
   }
 }
 
@@ -314,18 +315,15 @@ function reset() {
   resultArray['month'] = null;
   resultArray['day'] = null;
   if (langFa)
-    pTitle.innerHTML = `تاریخ تولدت رو به صورت <span style='color:var(--danger-color)'>روز/ماه/سال</span> بگو`;
+    pTitle.innerHTML = `تاریخ تولدت رو به صورت <span style='color:var(--danger-color)'>روز/ماه شمسی/سال</span> بگو`;
   else
-    pTitle.innerHTML = `After the birthday, say : <span style='color:var(--danger-color)'>Day</span> </br>
-    After the month of birth, say : <span style='color:var(--danger-color)'>Month</span> </br>
-    After the year of birth, say : <span style='color:var(--danger-color)'>Year</span>
-  `;
+    pTitle.innerHTML = `Say your birthday with below format <br/> <span style='color:var(--danger-color)'>Year/Gregorian Month/Day</span> `;
   pTitle.style.textAlign = 'left';
 
   speakeControl = true;
-  pYear.textContent = '00';
-  pMonth.textContent = '00';
-  pDay.textContent = '00';
+  pYear.textContent = `  `;
+  pMonth.textContent = `  `;
+  pDay.textContent = `  `;
   pRemain.style.opacity = 0;
 
   helpText.style.color = 'var(--danger-color)';
