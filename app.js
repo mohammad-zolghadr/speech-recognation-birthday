@@ -145,7 +145,7 @@ function farsiVersion(text) {
   }
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-    pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' در غیر اینصورت دوباره بگو";
+    pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' وگرنه دوباره بگو";
     helpText.style.color = 'var(--secondary-color)';
     helpText.textContent = `${resultArray['day']}/${resultArray['month']}/${resultArray['year']}`;
   }
@@ -182,7 +182,7 @@ function englishVersion(text) {
   }
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-    pTitle.textContent = "If this information is right say 'OK' otherwise say it again";
+    pTitle.textContent = "If this information is correct say 'OK' otherwise say it again";
     helpText.style.color = '#676767';
     helpText.textContent = `${resultArray['year']}/${resultArray['month']}/${resultArray['day']}`;
   }
