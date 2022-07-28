@@ -172,9 +172,11 @@ function startDetection(text) {
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
     langFa
-      ? (pTitle.textContent = `اگه این اطلاعات درسته بگو 'اوکی' <br/> اگه اشتباهه دوباره بگو`)
+      ? (pTitle.textContent = `اگه این اطلاعات درسته بگو 'اوکی' 
+      اگه اشتباهه دوباره بگو`)
       : (pTitle.textContent =
-          `If this information is correct say 'OK' <br/> if it is incorrect, say it again`);
+          `If this information is correct say 'OK' 
+          if it is incorrect, say it again`);
     helpText.style.color = 'var(--secondary-color)';
     helpText.textContent = `${resultArray['day']}/${resultArray['month']}/${resultArray['year']}`;
   }
@@ -188,7 +190,7 @@ function startDetection(text) {
     if (resultArray['day'] > 31) {
       langFa
         ? popUp('روز تولد اشتباهه، یه بار دیگه روز رو بگو')
-        : popUp('Day of birthday is invalid \n say it again');
+        : popUp('Day of birthday is invalid ,say it again');
     } else {
       // End Speak
       if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
