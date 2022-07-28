@@ -75,8 +75,8 @@ btnLangChange.addEventListener('click', () => {
       dmyTexts[2].textContent = 'سال';
     }
   else {
-    if (langFa) popUp('لطفا وقتی این عملیات تمام شد دوباره تلاش کن');
-    else popUp('Please try again when this time is over');
+    if (langFa) popUp('عملیاتِ فارسی که تموم شد زبان رو عوض کن');
+    else popUp('When the English operation is finished, change the language');
   }
   pRemain.style.opacity = 0;
 });
@@ -119,6 +119,7 @@ function farsiVersion(text) {
     tArray.forEach((t) => {
       if (e == t) {
         resultArray['month'] = e;
+        pMonth.textContent = e;
       }
     });
   });
@@ -129,8 +130,13 @@ function farsiVersion(text) {
       let t = String(e).padStart(4, '*');
       console.log(t);
       if (e)
-        if (t.includes('*')) resultArray['day'] = e;
-        else resultArray['year'] = e;
+        if (t.includes('*')) {
+          resultArray['day'] = e;
+          pYear.textContent = e;
+        } else {
+          resultArray['year'] = e;
+          pDay.textContent = e;
+        }
     }
   });
 
@@ -145,7 +151,7 @@ function farsiVersion(text) {
   }
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-    pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' در غیر اینصورت دوباره بگو";
+    pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' وگرنه دوباره بگو";
     helpText.style.color = 'var(--secondary-color)';
     helpText.textContent = `${resultArray['day']}/${resultArray['month']}/${resultArray['year']}`;
   }
@@ -182,7 +188,7 @@ function englishVersion(text) {
   }
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
-    pTitle.textContent = "If this information is right say 'OK' otherwise say it again";
+    pTitle.textContent = "If this information is correct say 'OK' otherwise say it again";
     helpText.style.color = '#676767';
     helpText.textContent = `${resultArray['year']}/${resultArray['month']}/${resultArray['day']}`;
   }
