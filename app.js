@@ -172,9 +172,9 @@ function startDetection(text) {
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
     langFa
-      ? (pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' '\n' وگرنه دوباره بگو")
+      ? (pTitle.textContent = `اگه این اطلاعات درسته بگو 'اوکی' <br/> اگه اشتباهه دوباره بگو`)
       : (pTitle.textContent =
-          "If this information is correct say 'OK' '\n' otherwise say it again");
+          `If this information is correct say 'OK' <br/> if it is incorrect, say it again`);
     helpText.style.color = 'var(--secondary-color)';
     helpText.textContent = `${resultArray['day']}/${resultArray['month']}/${resultArray['year']}`;
   }
