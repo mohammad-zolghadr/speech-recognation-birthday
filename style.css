@@ -212,6 +212,7 @@ footer a {
 .popUp p {
   color: var(--dark-color);
   font-size: 0.8rem;
+  text-align : center;
 }
 
 .pu-content button {
