@@ -9,4 +9,7 @@ Some features of this program : </br>
 # <a href="https://mohammad-speech-recognation.netlify.app/" target="_blank">Click to show demo</a>
 
 
-![Screenshot (2523)](https://user-images.githubusercontent.com/48680310/181355621-147e84a7-17a7-4890-8f40-8fa9a361f670.png)
+<div style="display:flex">
+<img src="https://user-images.githubusercontent.com/48680310/181483004-dd174c56-9d44-4f32-b08e-c009acb4fc74.png" style="width:49%"/>
+<img src="https://user-images.githubusercontent.com/48680310/181483016-ecee9761-5d6f-4b9e-8618-0d2ca716c11e.png" style="width:49%"/>
+</div>
