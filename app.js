@@ -75,8 +75,8 @@ btnLangChange.addEventListener('click', () => {
       dmyTexts[2].textContent = 'سال';
     }
   else {
-    if (langFa) popUp('لطفا وقتی این عملیات تمام شد دوباره تلاش کن');
-    else popUp('Please try again when this time is over');
+    if (langFa) popUp('عملیاتِ فارسی که تموم شد زبان رو عوض کن');
+    else popUp('When the English operation is finished, change the language');
   }
   pRemain.style.opacity = 0;
 });
