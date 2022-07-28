@@ -172,9 +172,9 @@ function startDetection(text) {
 
   if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
     langFa
-      ? (pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' وگرنه دوباره بگو")
+      ? (pTitle.textContent = "اگه این اطلاعات درسته بگو 'اوکی' \n وگرنه دوباره بگو")
       : (pTitle.textContent =
-          "If this information is correct say 'OK' otherwise say it again");
+          "If this information is correct say 'OK' \n otherwise say it again");
     helpText.style.color = 'var(--secondary-color)';
     helpText.textContent = `${resultArray['day']}/${resultArray['month']}/${resultArray['year']}`;
   }
@@ -315,9 +315,9 @@ function reset() {
   resultArray['month'] = null;
   resultArray['day'] = null;
   if (langFa)
-    pTitle.innerHTML = `تاریخ تولدت رو به صورت <span style='color:var(--danger-color)'>روز/ماه شمسی/سال</span> بگو`;
+    pTitle.innerHTML = `تاریخ تولدت رو به فرمت زیر بگو <br/> <span style='color:var(--danger-color)'>روز/ماه شمسی/سال</span>`;
   else
-    pTitle.innerHTML = `Say your birthday with below format <br/> <span style='color:var(--danger-color)'>Year/Gregorian Month/Day</span> `;
+    pTitle.innerHTML = `Say your birthday with below format <br/> <span style='color:var(--danger-color)'>Year/Gregorian Month/Day</span>`;
   pTitle.style.textAlign = 'left';
 
   speakeControl = true;
