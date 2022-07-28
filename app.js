@@ -189,6 +189,10 @@ function startDetection(text) {
       langFa
         ? popUp('روز تولد اشتباهه، یه بار دیگه روز رو بگو')
         : popUp('Day of birthday is invalid ,say it again');
+    } else if (resultArray['year'] > returnDate()['year']) {
+      langFa
+        ? popUp('سال تولد اشتباهه، یه بار دیگه سال رو بگو')
+        : popUp('Year of birthday is invalid ,say it again');
     } else {
       // End Speak
       if (resultArray['year'] && resultArray['month'] && resultArray['day']) {
@@ -250,23 +254,8 @@ function calculateRemain(month, day) {
 }
 
 function calculateAge(year, month, day) {
-  let d,
-    date = [];
-  if (!langFa) {
-    d = new Date();
-    date['day'] = d.getDate();
-    date['month'] = d.getMonth();
-    date['year'] = d.getFullYear();
-  } else {
-    d = new Date().toLocaleDateString('fa-IR');
-    let e = '۰'.charCodeAt(0);
-    d = d.replace(/[۰-۹]/g, function (t) {
-      return t.charCodeAt(0) - e;
-    });
-    date['day'] = parseInt(d.split('/')[2]);
-    date['month'] = parseInt(d.split('/')[1]);
-    date['year'] = parseInt(d.split('/')[0]);
-  }
+  let date = [];
+  date = returnDate();
 
   let fDay,
     fMonth = 0,
@@ -308,6 +297,27 @@ function calculateAge(year, month, day) {
   pYear.textContent = String(fDay).padStart(2, '0');
 
   calculateRemain(resultArray['month'], resultArray['day']);
+}
+
+function returnDate() {
+  let d,
+    date = [];
+  if (!langFa) {
+    d = new Date();
+    date['day'] = d.getDate();
+    date['month'] = d.getMonth();
+    date['year'] = d.getFullYear();
+  } else {
+    d = new Date().toLocaleDateString('fa-IR');
+    let e = '۰'.charCodeAt(0);
+    d = d.replace(/[۰-۹]/g, function (t) {
+      return t.charCodeAt(0) - e;
+    });
+    date['day'] = parseInt(d.split('/')[2]);
+    date['month'] = parseInt(d.split('/')[1]);
+    date['year'] = parseInt(d.split('/')[0]);
+  }
+  return date;
 }
 
 function reset() {
