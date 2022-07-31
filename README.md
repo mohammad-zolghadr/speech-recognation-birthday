@@ -10,6 +10,6 @@ Some features of this program : </br>
 
 
 <div style="display:flex">
-<img src="https://user-images.githubusercontent.com/48680310/181483004-dd174c56-9d44-4f32-b08e-c009acb4fc74.png" style="width:49%"/>
-<img src="https://user-images.githubusercontent.com/48680310/181483016-ecee9761-5d6f-4b9e-8618-0d2ca716c11e.png" style="width:49%"/>
+<img src="https://user-images.githubusercontent.com/48680310/181483004-dd174c56-9d44-4f32-b08e-c009acb4fc74.png" style="width:48%"/>
+<img src="https://user-images.githubusercontent.com/48680310/181483016-ecee9761-5d6f-4b9e-8618-0d2ca716c11e.png" style="width:48%"/>
 </div>
